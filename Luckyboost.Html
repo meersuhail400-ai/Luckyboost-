@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>LuckyBoost — Grow Your Business Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --gold:#D4A843;--gold-l:#F5C842;--gold-d:rgba(212,168,67,0.13);
+  --dark:#0A0A0F;--dark2:#111118;--dark3:#18181F;--card:#15151D;
+  --border:rgba(212,168,67,0.2);--text:#E8E8F0;--muted:#888899;--white:#FAFAFA;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(10,10,15,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--gold);text-decoration:none}
+.logo span{color:var(--white)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.84rem;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold)!important;color:var(--dark)!important;padding:.5rem 1.3rem;border-radius:6px;font-weight:700!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gold);border-radius:2px}
+.mob-menu{display:none;position:fixed;top:63px;left:0;right:0;background:rgba(8,8,12,.98);border-bottom:1px solid var(--border);padding:1.5rem 2rem;z-index:490;flex-direction:column}
+.mob-menu.open{display:flex}
+.mob-menu a{color:var(--muted);text-decoration:none;font-size:.95rem;font-weight:500;padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.05);transition:color .3s}
+.mob-menu a:last-child{border:none;margin-top:.5rem}
+.mob-menu a:hover{color:var(--gold)}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 1.5rem 5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(212,168,67,.11) 0%,transparent 68%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold-d);border:1px solid var(--border);padding:.4rem 1.1rem;border-radius:100px;font-size:.76rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.8rem;animation:fD .8s ease both}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6.5vw,5.8rem);font-weight:900;line-height:1.08;letter-spacing:-2px;color:var(--white);max-width:920px;animation:fD .9s .1s ease both}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--gold-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:560px;line-height:1.8;margin:1.8rem auto 2.5rem;font-weight:300;animation:fD .9s .2s ease both}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fD .9s .3s ease both}
+.btn-gold{background:linear-gradient(135deg,var(--gold-l),var(--gold));color:var(--dark);padding:.9rem 2rem;border-radius:9px;font-weight:700;font-size:.92rem;text-decoration:none;border:none;cursor:pointer;transition:transform .2s,box-shadow .3s;box-shadow:0 0 40px rgba(212,168,67,.35)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 0 60px rgba(212,168,67,.55)}
+.btn-out{background:transparent;color:var(--text);padding:.9rem 2rem;border-radius:9px;font-weight:500;font-size:.92rem;text-decoration:none;border:1px solid var(--border);cursor:pointer;transition:border-color .3s,color .3s,transform .2s}
+.btn-out:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+.counters{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;margin-top:4rem;padding-top:3rem;border-top:1px solid var(--border);animation:fD .9s .45s ease both}
+.ctr{text-align:center}
+.ctr-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;color:var(--gold);line-height:1}
+.ctr-lbl{font-size:.72rem;color:var(--muted);margin-top:.3rem;letter-spacing:.06em;text-transform:uppercase}
+section{padding:5.5rem 1.5rem}
+.container{max-width:1160px;margin:0 auto}
+.sec-tag{display:inline-block;background:var(--gold-d);border:1px solid var(--border);color:var(--gold);font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.32rem .9rem;border-radius:100px;margin-bottom:1rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.9rem);font-weight:900;line-height:1.15;letter-spacing:-1px;color:var(--white);margin-bottom:.9rem}
+.sec-sub{font-size:.93rem;color:var(--muted);line-height:1.75;font-weight:300}
+.center{text-align:center}.center .sec-sub{max-width:500px;margin:0 auto}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+#who{background:var(--dark2)}
+.who-strip{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem}
+.who-pill{display:flex;align-items:center;gap:.7rem;background:var(--card);border:1px solid var(--border);padding:.9rem 1.6rem;border-radius:100px;font-size:.88rem;font-weight:600;color:var(--muted);cursor:default;transition:all .3s}
+.who-pill:hover{border-color:rgba(212,168,67,.5);color:var(--gold);transform:translateY(-2px)}
+.who-pill span{font-size:1.2rem}
+#services{background:var(--dark)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.3rem;margin-top:3.5rem}
+.svc{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2.2rem 1.8rem;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+.svc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.svc:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.45);border-color:rgba(212,168,67,.4)}
+.svc:hover::before{opacity:1}
+.svc-ico{width:52px;height:52px;background:var(--gold-d);border:1px solid var(--border);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.3rem}
+.svc h3{font-family:'Playfair Display',serif;font-size:1.13rem;font-weight:700;color:var(--white);margin-bottom:.65rem;line-height:1.3}
+.svc p{font-size:.83rem;color:var(--muted);line-height:1.68;font-weight:300}
+.svc-feats{margin-top:1.2rem;display:flex;flex-direction:column;gap:.4rem}
+.feat{display:flex;align-items:center;gap:.55rem;font-size:.78rem;color:var(--muted)}
+.feat::before{content:'✦';color:var(--gold);font-size:.55rem;flex-shrink:0}
+#how{background:var(--dark2)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:3.5rem;position:relative}
+.steps::before{content:'';position:absolute;top:36px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--border) 30%,var(--border) 70%,transparent)}
+.step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:2rem 1.2rem}
+.step-n{width:72px;height:72px;background:var(--dark3);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--gold);margin-bottom:1.4rem;position:relative;z-index:1;transition:background .3s,box-shadow .3s}
+.step:hover .step-n{background:var(--gold-d);box-shadow:0 0 30px rgba(212,168,67,.2)}
+.step h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.5rem}
+.step p{font-size:.81rem;color:var(--muted);line-height:1.6}
+#gallery{background:var(--dark)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
+.g-card{border-radius:14px;overflow:hidden;position:relative;aspect-ratio:4/3;background:var(--card);border:1px solid var(--border);transition:transform .3s,box-shadow .3s;cursor:pointer}
+.g-card:hover{transform:scale(1.02);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.g-card.tall{grid-row:span 2;aspect-ratio:auto}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,15,.9) 0%,transparent 60%)}
+.g-content{position:absolute;bottom:0;left:0;right:0;z-index:1;padding:1.5rem}
+.g-tag{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.g-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--white)}
+.g-before-after{display:grid;grid-template-columns:1fr 1fr;height:100%}
+.g-before,.g-after{display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative}
+.g-before{background:rgba(255,60,60,.07)}
+.g-after{background:rgba(212,168,67,.07)}
+.g-ba-label{position:absolute;bottom:8px;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.g-before .g-ba-label{color:#ff6b6b}
+.g-after .g-ba-label{color:var(--gold)}
+.g-emoji{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.12}
+#testimonials{background:var(--dark2)}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.3rem;margin-top:3rem}
+.testi{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2rem 1.8rem;transition:transform .3s,border-color .3s}
+.testi:hover{transform:translateY(-4px);border-color:rgba(212,168,67,.35)}
+.testi-stars{color:var(--gold);font-size:1rem;letter-spacing:2px;margin-bottom:1rem}
+.testi-text{font-size:.88rem;color:var(--text);line-height:1.7;font-style:italic;font-weight:300;margin-bottom:1.4rem}
+.testi-text::before{content:'"';font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);line-height:0;vertical-align:-.5rem;margin-right:.2rem}
+.testi-footer{display:flex;align-items:center;gap:.9rem;padding-top:1rem;border-top:1px solid var(--border)}
+.testi-avatar{width:42px;height:42px;border-radius:50%;background:var(--gold-d);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.testi-name{font-size:.86rem;font-weight:700;color:var(--white)}
+.testi-biz{font-size:.76rem;color:var(--muted);margin-top:.1rem}
+#qr{background:var(--dark)}
+.qr-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.standee{background:linear-gradient(145deg,#1a1a26,#0e0e16);border:1px solid rgba(212,168,67,.35);border-radius:24px;padding:2.8rem 2rem;text-align:center;width:260px;margin:0 auto;box-shadow:0 40px 80px rgba(0,0,0,.6)}
+.standee-top{font-family:'Playfair Display',serif;font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.2rem}
+.qr-box{width:130px;height:130px;background:white;border-radius:12px;margin:0 auto 1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(212,168,67,.2)}
+.qr-dots{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;width:90px}
+.d{width:9px;height:9px;border-radius:1px;background:#0A0A0F}.d.e{background:transparent}
+.standee-stars{color:var(--gold);font-size:1rem;letter-spacing:3px;margin-bottom:.5rem}
+.standee-txt{font-size:.76rem;color:var(--muted);line-height:1.5}
+.qr-perks{margin-top:2rem;display:flex;flex-direction:column;gap:.9rem}
+.perk{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1.1rem;background:var(--card);border:1px solid var(--border);border-radius:10px;transition:border-color .3s}
+.perk:hover{border-color:rgba(212,168,67,.4)}
+.perk-ico{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+.perk h5{font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.18rem}
+.perk p{font-size:.78rem;color:var(--muted);line-height:1.5}
+#pricing{background:var(--dark2)}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.3rem;margin-top:3.5rem;align-items:start}
+.p-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.3rem 2rem;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.p-card:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,.4)}
+.p-card.hot{border-color:var(--gold);background:linear-gradient(145deg,#1c1b12,#15151D);box-shadow:0 0 60px rgba(212,168,67,.12)}
+.hot-badge{position:absolute;top:1.4rem;right:1.4rem;background:var(--gold);color:var(--dark);font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:100px}
+.p-name{font-size:.75rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.7rem}
+.p-amt{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--white);line-height:1}
+.p-amt sup{font-size:1rem;font-weight:400;color:var(--muted);vertical-align:top;margin-top:.5rem;display:inline-block}
+.p-period{font-size:.78rem;color:var(--muted);margin-bottom:1.5rem;margin-top:.2rem}
+.p-div{height:1px;background:var(--border);margin:1.3rem 0}
+.p-feats{display:flex;flex-direction:column;gap:.7rem}
+.pf{display:flex;align-items:center;gap:.65rem;font-size:.83rem;color:var(--muted)}
+.pf-ck{width:18px;height:18px;background:var(--gold-d);border:1px solid rgba(212,168,67,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.55rem;color:var(--gold)}
+.p-btn{display:block;text-align:center;margin-top:2rem;padding:.85rem;border-radius:10px;font-weight:700;font-size:.88rem;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .3s}
+.p-btn-out{border:1px solid var(--border);color:var(--text);background:transparent}
+.p-btn-out:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.p-btn-gold{background:linear-gradient(135deg,var(--gold-l),var(--gold));color:var(--dark);box-shadow:0 0 30px rgba(212,168,67,.3)}
+.p-btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(212,168,67,.5)}
+#faq{background:var(--dark)}
+.faq-list{margin-top:3rem;display:flex;flex-direction:column;gap:.8rem;max-width:760px;margin-left:auto;margin-right:auto}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .3s}
+.faq-item.open{border-color:rgba(212,168,67,.4)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;cursor:pointer;gap:1rem}
+.faq-q span{font-size:.9rem;font-weight:600;color:var(--white);line-height:1.4}
+.faq-arrow{width:26px;height:26px;background:var(--gold-d);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);font-size:.75rem;transition:transform .3s,background .3s}
+.faq-item.open .faq-arrow{transform:rotate(45deg);background:rgba(212,168,67,.25)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a-inner{padding:0 1.5rem 1.2rem;font-size:.84rem;color:var(--muted);line-height:1.7;font-weight:300}
+.faq-item.open .faq-a{max-height:300px}
+#contact{background:var(--dark2)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start}
+.cinfo-item{display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:.8rem;transition:border-color .3s}
+.cinfo-item:hover{border-color:rgba(212,168,67,.4)}
+.cinfo-ico{width:40px;height:40px;background:var(--gold-d);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.cinfo-txt{font-size:.85rem;font-weight:600;color:var(--white)}
+.cinfo-sub{font-size:.75rem;color:var(--muted);margin-top:.1rem}
+.cform{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{margin-bottom:1.1rem}
+.form-group label{display:block;font-size:.78rem;font-weight:600;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.5rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:#0e0e16;border:1px solid var(--border);border-radius:9px;padding:.85rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .3s,box-shadow .3s;resize:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);box-shadow:0 0 20px rgba(212,168,67,.1)}
+.form-group select option{background:#0e0e16}
+.form-submit{width:100%;background:linear-gradient(135deg,var(--gold-l),var(--gold));color:var(--dark);padding:1rem;border-radius:10px;font-weight:700;font-size:.95rem;border:none;cursor:pointer;transition:transform .2s,box-shadow .3s;box-shadow:0 0 30px rgba(212,168,67,.3)}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(212,168,67,.5)}
+#cta{background:var(--dark);text-align:center;padding:6rem 1.5rem;position:relative;overflow:hidden}
+#cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(212,168,67,.09) 0%,transparent 68%);pointer-events:none}
+#cta h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.8rem);font-weight:900;line-height:1.1;color:var(--white);max-width:720px;margin:0 auto 1.2rem;letter-spacing:-1px;position:relative;z-index:1}
+#cta h2 em{font-style:normal;color:var(--gold)}
+#cta p{color:var(--muted);max-width:460px;margin:0 auto 2.5rem;line-height:1.75;font-size:.95rem;position:relative;z-index:1;font-weight:300}
+footer{background:var(--dark2);border-top:1px solid var(--border);padding:2.5rem 3rem}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;max-width:1160px;margin:0 auto}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--gold)}
+.footer-logo span{color:var(--white)}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-links a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .3s}
+.footer-links a:hover{color:var(--gold)}
+.footer-copy{font-size:.76rem;color:var(--muted)}
+.social-btn{width:36px;height:36px;border-radius:9px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.95rem;text-decoration:none;transition:all .3s}
+.social-btn:hover{border-color:var(--gold);background:var(--gold-d);transform:translateY(-2px)}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:600;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+.wa-btn{width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(37,211,102,.45);text-decoration:none;transition:transform .2s,box-shadow .3s;animation:pulse 2.5s infinite}
+.wa-btn:hover{transform:scale(1.1)}
+.wa-btn svg{width:30px;height:30px;fill:white}
+.wa-tip{background:rgba(10,10,15,.92);border:1px solid var(--border);color:var(--white);font-size:.78rem;font-weight:600;padding:.4rem .9rem;border-radius:100px;backdrop-filter:blur(10px);white-space:nowrap}
+@keyframes fD{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{box-shadow:0 8px 30px rgba(37,211,102,.45)}50%{box-shadow:0 8px 40px rgba(37,211,102,.7)}}
+@media(max-width:900px){
+  nav{padding:.9rem 1.5rem}.nav-links{display:none}.hamburger{display:flex}
+  .qr-wrap,.contact-wrap{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}
+  footer{padding:2rem 1.5rem}.footer-inner{flex-direction:column;text-align:center}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}.g-card.tall{grid-row:span 1}
+  .steps::before{display:none}
+}
+@media(max-width:580px){.gallery-grid{grid-template-columns:1fr}.counters{gap:1.5rem}.standee{width:220px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">Lucky<span>Boost</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#who">Who We Serve</a></li>
+    <li><a href="#gallery">Results</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#who" onclick="toggleMenu()">Who We Serve</a>
+  <a href="#gallery" onclick="toggleMenu()">Results</a>
+  <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="#contact" onclick="toggleMenu()" class="nav-cta" style="text-align:center;padding:.7rem;border-radius:8px;margin-top:.5rem">📲 Order Now</a>
+</div>
+
+<section class="hero">
+  <div class="hero-badge">⭐ India's #1 Business Growth Service</div>
+  <h1>Put Your Business on<br/>the <em>Digital Map</em></h1>
+  <p class="hero-sub">Automate Google Reviews, build stunning digital menus, dominate Google Maps, and convert every customer with a premium QR Standee — all in one place.</p>
+  <div class="hero-btns">
+    <a href="https://wa.me/917889620931?text=Hello!%20I%20want%20to%20grow%20my%20business%20with%20LuckyBoost." target="_blank" class="btn-gold">📲 WhatsApp Us — Free Consultation</a>
+    <a href="#services" class="btn-out">Explore Services ↓</a>
+  </div>
+  <div class="counters">
+    <div class="ctr"><div class="ctr-num" data-target="500">0</div><div class="ctr-lbl">Businesses Boosted</div></div>
+    <div class="ctr"><div class="ctr-num" data-target="12000">0</div><div class="ctr-lbl">Reviews Generated</div></div>
+    <div class="ctr"><div class="ctr-num" data-target="49" data-decimal="true">0</div><div class="ctr-lbl">Avg. Rating Achieved</div></div>
+    <div class="ctr"><div class="ctr-num" data-target="98" data-suffix="%">0</div><div class="ctr-lbl">Client Satisfaction</div></div>
+  </div>
+</section>
+
+<section id="who">
+  <div class="container">
+    <div class="center reveal">
+      <div class="sec-tag">Who We Serve</div>
+      <h2 class="sec-title">Built for Every Local Business</h2>
+      <p class="sec-sub">Whether you run a restaurant or a clinic — if your business is local, LuckyBoost is made for you.</p>
+    </div>
+    <div class="who-strip reveal">
+      <div class="who-pill"><span>🍽️</span> Restaurants &amp; Cafes</div>
+      <div class="who-pill"><span>🏨</span> Hotels &amp; Stays</div>
+      <div class="who-pill"><span>💇</span> Salons &amp; Spas</div>
+      <div class="who-pill"><span>🛍️</span> Shops &amp; Retail Stores</div>
+      <div class="who-pill"><span>🏥</span> Medical &amp; Clinics</div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="center reveal">
+      <div class="sec-tag">Our Services</div>
+      <h2 class="sec-title">5 Powerful Services That<br/>Transform Your Business</h2>
+      <p class="sec-sub">Everything your business needs in one package — no running around, no confusion.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="svc-ico">⚙️</div>
+        <h3>Google Reviews Automation Dashboard</h3>
+        <p>Your private dashboard automatically sends review requests, tracks responses, and grows your rating — completely hands-free.</p>
+        <div class="svc-feats">
+          <div class="feat">Automated review request campaigns</div>
+          <div class="feat">Real-time dashboard &amp; analytics</div>
+          <div class="feat">Negative review management</div>
+          <div class="feat">Review monitoring &amp; instant alerts</div>
+        </div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-ico">🍽️</div>
+        <h3>Digital Menu Card for Outlets</h3>
+        <p>A beautiful, scannable digital menu for your restaurant or cafe. Customers scan a QR code and your menu opens instantly — no printing needed, ever.</p>
+        <div class="svc-feats">
+          <div class="feat">Custom branded menu design</div>
+          <div class="feat">Instant QR code access</div>
+          <div class="feat">Update anytime — no reprinting</div>
+          <div class="feat">Photos, prices &amp; categories included</div>
+        </div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-ico">📍</div>
+        <h3>Google Maps Listing &amp; Profile Setup</h3>
+        <p>We professionally set up and optimise your Google Business Profile — fix wrong information, add photos, link your website, and enable online booking.</p>
+        <div class="svc-feats">
+          <div class="feat">Verified Google Business Profile</div>
+          <div class="feat">Fix &amp; update incorrect information</div>
+          <div class="feat">Website &amp; booking link integration</div>
+          <div class="feat">Local SEO optimisation</div>
+        </div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-ico">🌐</div>
+        <h3>Professional Business Website</h3>
+        <p>A clean, fast, mobile-friendly website for your business — linked to your Google profile, with WhatsApp and booking buttons built right in.</p>
+        <div class="svc-feats">
+          <div class="feat">Professional &amp; mobile-ready design</div>
+          <div class="feat">Google Maps &amp; reviews integration</div>
+          <div class="feat">WhatsApp &amp; booking button</div>
+          <div class="feat">Fast loading &amp; SEO ready</div>
+        </div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-ico">✨</div>
+        <h3>Premium QR Review Standee</h3>
+        <p>A beautifully branded QR standee for your counter — every happy customer scans it and lands directly on your Google review page in seconds.</p>
+        <div class="svc-feats">
+          <div class="feat">Fully custom branded design</div>
+          <div class="feat">Direct Google review link</div>
+          <div class="feat">Acrylic or metal finish options</div>
+          <div class="feat">Pan-India doorstep delivery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <div class="center reveal">
+      <div class="sec-tag">How It Works</div>
+      <h2 class="sec-title">Up &amp; Running in 4 Simple Steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-n">1</div>
+        <h4>Place Your Order</h4>
+        <p>WhatsApp us or fill the contact form. Choose the package that fits your business best.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">2</div>
+        <h4>We Set Everything Up</h4>
+        <p>Our team sets up your dashboard, digital menu, Google profile, and standee design within 48 hours.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">3</div>
+        <h4>Place Your Standee</h4>
+        <p>Your custom QR standee is delivered to your door. Place it at your counter and watch reviews roll in.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">4</div>
+        <h4>Watch Your Business Grow</h4>
+        <p>Boost your rating, rank on Google, attract new customers — track it all from your private dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="center reveal">
+      <div class="sec-tag">Real Results</div>
+      <h2 class="sec-title">See the Difference We Make</h2>
+      <p class="sec-sub">Real stories from real businesses — before and after LuckyBoost.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="g-card tall" style="background:linear-gradient(145deg,#1a1a10,#0e0e0a)">
+        <div class="g-before-after">
+          <div class="g-before">😕<div class="g-ba-label">Before</div></div>
+          <div class="g-after">🌟<div class="g-ba-label">After</div></div>
+        </div>
+        <div class="g-overlay"></div>
+        <div class="g-content">
+          <div class="g-tag">🍽️ Restaurant · Mumbai</div>
+          <div class="g-name">2.8★ to 4.7★ — In Just 3 Months</div>
+        </div>
+      </div>
+      <div class="g-card" style="background:linear-gradient(145deg,#0e1a1a,#091010)">
+        <div class="g-emoji">💇</div>
+        <div class="g-overlay"></div>
+        <div class="g-content"><div class="g-tag">💇 Salon · Delhi</div><div class="g-name">84 New Reviews in the 1st Month</div></div>
+      </div>
+      <div class="g-card" style="background:linear-gradient(145deg,#1a100e,#100806)">
+        <div class="g-emoji">🏨</div>
+        <div class="g-overlay"></div>
+        <div class="g-content"><div class="g-tag">🏨 Hotel · Jaipur</div><div class="g-name">Ranked #1 on Google Maps — Local Area</div></div>
+      </div>
+      <div class="g-card" style="background:linear-gradient(145deg,#0e0e1a,#080812)">
+        <div class="g-emoji">🏥</div>
+        <div class="g-overlay"></div>
+        <div class="g-content"><div class="g-tag">🏥 Clinic · Pune</div><div class="g-name">200+ New Patients via Google Maps</div></div>
+      </div>
+      <div class="g-card" style="background:linear-gradient(145deg,#1a1a0e,#10100a)">
+        <div class="g-emoji">🛍️</div>
+        <div class="g-overlay"></div>
+        <div class="g-content"><div class="g-tag">🛍️ Shop · Bangalore</div><div class="g-name">3x More Walk-In Customers</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="container">
+    <div class="center reveal">
+      <div class="sec-tag">Client Testimonials</div>
+      <h2 class="sec-title">What Our Clients Say</h2>
+      <p class="sec-sub">Real businesses. Real results. In their own words.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">My restaurant was invisible on Google. LuckyBoost took my rating from 2.9 to 4.6 in just 2 months. New customers come in every day from Google searches!</p>
+        <div class="testi-footer"><div class="testi-avatar">👨‍🍳</div><div><div class="testi-name">Rahul Sharma</div><div class="testi-biz">Sharma's Dhaba, Mumbai</div></div></div>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">After placing the QR standee, we receive 5–10 new reviews every single day. My salon is now the top-listed one in the area. Excellent service — 100% recommended!</p>
+        <div class="testi-footer"><div class="testi-avatar">💇‍♀️</div><div><div class="testi-name">Priya Verma</div><div class="testi-biz">Glam Studio, Delhi</div></div></div>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Our hotel was nowhere on Google Maps. LuckyBoost set up our profile, built a website, and now we are #1 in our local area. Bookings have doubled!</p>
+        <div class="testi-footer"><div class="testi-avatar">🏨</div><div><div class="testi-name">Anil Patel</div><div class="testi-biz">Sunrise Guest House, Jaipur</div></div></div>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">The QR standee collects reviews effortlessly. Our clinic's credibility on Google has gone through the roof. Patients trust us more now. Worth every rupee!</p>
+        <div class="testi-footer"><div class="testi-avatar">👨‍⚕️</div><div><div class="testi-name">Dr. Mehta</div><div class="testi-biz">Mehta Clinic, Pune</div></div></div>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Before LuckyBoost, no one found my shop online. Now 20–30 new customers visit every week directly from Google Maps. They have completely transformed my business!</p>
+        <div class="testi-footer"><div class="testi-avatar">🛍️</div><div><div class="testi-name">Sunita Agarwal</div><div class="testi-biz">Fashion Hub, Bangalore</div></div></div>
+      </div>
+      <div class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Everything was set up within 48 hours! The dashboard lets me monitor reviews coming in daily. Completely professional service. Highly recommended, LuckyBoost!</p>
+        <div class="testi-footer"><div class="testi-avatar">☕</div><div><div class="testi-name">Vikram Singh</div><div class="testi-biz">The Coffee Corner, Chandigarh</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="qr">
+  <div class="container">
+    <div class="qr-wrap">
+      <div class="reveal" style="display:flex;flex-direction:column;align-items:center;gap:1.5rem">
+        <div class="standee">
+          <div class="standee-top">★ Rate Us on Google ★</div>
+          <div class="qr-box">
+            <div class="qr-dots">
+              <div class="d"></div><div class="d"></div><div class="d"></div><div class="d e"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+              <div class="d"></div><div class="d e"></div><div class="d"></div><div class="d e"></div><div class="d"></div><div class="d e"></div><div class="d"></div>
+              <div class="d"></div><div class="d e"></div><div class="d"></div><div class="d e"></div><div class="d"></div><div class="d e"></div><div class="d"></div>
+              <div class="d e"></div><div class="d e"></div><div class="d e"></div><div class="d"></div><div class="d e"></div><div class="d e"></div><div class="d e"></div>
+              <div class="d"></div><div class="d e"></div><div class="d"></div><div class="d e"></div><div class="d"></div><div class="d e"></div><div class="d"></div>
+              <div class="d"></div><div class="d e"></div><div class="d"></div><div class="d e"></div><div class="d"></div><div class="d e"></div><div class="d"></div>
+              <div class="d"></div><div class="d"></div><div class="d"></div><div class="d e"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+            </div>
+          </div>
+          <div class="standee-stars">★★★★★</div>
+          <div class="standee-txt">Scan to leave us a review<br/>It only takes 10 seconds!</div>
+        </div>
+        <p style="font-size:.73rem;color:var(--muted);text-align:center;max-width:220px;line-height:1.5">↑ Your logo &amp; brand colours will be applied here</p>
+      </div>
+      <div class="reveal">
+        <div class="sec-tag">Premium QR Standee</div>
+        <h2 class="sec-title">Turn Every Customer Into<br/>a 5-Star Reviewer</h2>
+        <p class="sec-sub">One standee on your counter and reviews start flowing in automatically. The most powerful in-person review tool available.</p>
+        <div class="qr-perks">
+          <div class="perk"><div class="perk-ico">🎨</div><div><h5>Fully Custom Branded</h5><p>Your logo, brand colours, and fonts — everything matched perfectly to your outlet's identity.</p></div></div>
+          <div class="perk"><div class="perk-ico">⚡</div><div><h5>Instant Review Link</h5><p>One scan takes customers directly to your Google review page — zero friction, maximum conversion.</p></div></div>
+          <div class="perk"><div class="perk-ico">🏆</div><div><h5>Premium Build Quality</h5><p>Crystal-clear acrylic or brushed metal finish — durable, elegant, and impressive.</p></div></div>
+          <div class="perk"><div class="perk-ico">🚚</div><div><h5>Pan-India Doorstep Delivery</h5><p>Delivered directly to your home or outlet, anywhere across India.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <div class="center reveal">
+      <div class="sec-tag">Packages &amp; Pricing</div>
+      <h2 class="sec-title">Simple Pricing — No Hidden Charges</h2>
+      <p class="sec-sub">Choose your package and start growing your business today.</p>
+    </div>
+    <div class="price-grid">
+      <div class="p-card reveal">
+        <div class="p-name">Starter</div>
+        <div class="p-amt"><sup>₹</sup>2,999</div>
+        <div class="p-period">One-time setup</div>
+        <div class="p-div"></div>
+        <div class="p-feats">
+          <div class="pf"><div class="pf-ck">✓</div>Google Maps Profile Setup</div>
+          <div class="pf"><div class="pf-ck">✓</div>Basic QR Review Standee</div>
+          <div class="pf"><div class="pf-ck">✓</div>Review Dashboard (3 Months)</div>
+          <div class="pf"><div class="pf-ck">✓</div>Website Link Integration</div>
+          <div class="pf"><div class="pf-ck">✓</div>Wrong Info Fix &amp; Update</div>
+        </div>
+        <a href="https://wa.me/917889620931?text=Hello!%20I%20want%20the%20Starter%20Package%20-%20%E2%82%B92999" target="_blank" class="p-btn p-btn-out">Order via WhatsApp →</a>
+      </div>
+      <div class="p-card hot reveal">
+        <div class="hot-badge">Most Popular</div>
+        <div class="p-name">Growth</div>
+        <div class="p-amt"><sup>₹</sup>5,999</div>
+        <div class="p-period">One-time setup</div>
+        <div class="p-div"></div>
+        <div class="p-feats">
+          <div class="pf"><div class="pf-ck">✓</div>Everything in Starter</div>
+          <div class="pf"><div class="pf-ck">✓</div>Digital Menu Card Builder</div>
+          <div class="pf"><div class="pf-ck">✓</div>Premium Acrylic Standee</div>
+          <div class="pf"><div class="pf-ck">✓</div>Online Booking Integration</div>
+          <div class="pf"><div class="pf-ck">✓</div>Dashboard Access (12 Months)</div>
+          <div class="pf"><div class="pf-ck">✓</div>10 Business Photos Uploaded</div>
+          <div class="pf"><div class="pf-ck">✓</div>Professional Business Website</div>
+        </div>
+        <a href="https://wa.me/917889620931?text=Hello!%20I%20want%20the%20Growth%20Package%20-%20%E2%82%B95999" target="_blank" class="p-btn p-btn-gold">Order via WhatsApp →</a>
+      </div>
+      <div class="p-card reveal">
+        <div class="p-name">Elite</div>
+        <div class="p-amt"><sup>₹</sup>9,999</div>
+        <div class="p-period">One-time setup</div>
+        <div class="p-div"></div>
+        <div class="p-feats">
+          <div class="pf"><div class="pf-ck">✓</div>Everything in Growth</div>
+          <div class="pf"><div class="pf-ck">✓</div>Metal Premium Standee</div>
+          <div class="pf"><div class="pf-ck">✓</div>Lifetime Dashboard Access</div>
+          <div class="pf"><div class="pf-ck">✓</div>Automated Review Campaigns</div>
+          <div class="pf"><div class="pf-ck">✓</div>Dedicated Account Manager</div>
+          <div class="pf"><div class="pf-ck">✓</div>Priority Support 24/7</div>
+          <div class="pf"><div class="pf-ck">✓</div>Monthly Progress Reports</div>
+        </div>
+        <a href="https://wa.me/917889620931?text=Hello!%20I%20want%20the%20Elite%20Package%20-%20%E2%82%B99999" target="_blank" class="p-btn p-btn-out">Order via WhatsApp →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="center reveal">
+      <div class="sec-tag">FAQ</div>
+      <h2 class="sec-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span>How long does it take to set everything up?</span><div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">Your Google profile, review dashboard, and digital menu are all ready within 48 hours of placing your order. The QR standee is delivered to your door within 5–7 working days.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span>What if I already have a Google Business Profile?</span><div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">No problem! If you already have a profile, we will optimise it — fix incorrect information, add professional photos, link your website and booking page, and improve your local SEO ranking.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span>Are the reviews genuine?</span><div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">100% genuine reviews. We only encourage your real customers to leave reviews — through smart reminders and your QR standee. No fake reviews, ever. We fully respect Google's policies.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span>How do I update my digital menu?</span><div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">Very easy! You can change prices, items, or photos from your dashboard at any time. Updates go live within minutes — no printing, no hassle, ever again.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span>Is this service available across all of India?</span><div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">Yes! All our digital services are available pan-India. The QR standee is also delivered anywhere across India — any city, any state.</div></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span>How can I make payment?</span><div class="faq-arrow">+</div></div><div class="faq-a"><div class="faq-a-inner">We accept UPI, bank transfer, Google Pay, and PhonePe. Payment details will be shared once your order is confirmed. 100% secure process.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="reveal">
+        <div class="sec-tag">Get In Touch</div>
+        <h2 class="sec-title" style="font-size:clamp(1.6rem,3vw,2.3rem)">Start Today — Free Consultation</h2>
+        <p class="sec-sub" style="margin-bottom:2rem">Have questions? WhatsApp us or fill the form. We reply within 1 hour.</p>
+        <div class="cinfo-item"><div class="cinfo-ico">📱</div><div><div class="cinfo-txt">+91 78896 20931</div><div class="cinfo-sub">WhatsApp &amp; Call Available</div></div></div>
+        <div class="cinfo-item"><div class="cinfo-ico">⏰</div><div><div class="cinfo-txt">Mon – Sat: 9 AM – 8 PM</div><div class="cinfo-sub">Quick response guaranteed</div></div></div>
+        <div class="cinfo-item"><div class="cinfo-ico">🚀</div><div><div class="cinfo-txt">Setup Within 48 Hours</div><div class="cinfo-sub">Fast delivery after every order</div></div></div>
+        <div style="display:flex;gap:.7rem;margin-top:1.5rem">
+          <a href="https://wa.me/917889620931" target="_blank" class="social-btn">💬</a>
+          <a href="https://instagram.com" target="_blank" class="social-btn">📸</a>
+          <a href="https://facebook.com" target="_blank" class="social-btn">📘</a>
+          <a href="tel:+917889620931" class="social-btn">📞</a>
+        </div>
+      </div>
+      <div class="cform reveal">
+        <div style="margin-bottom:1.5rem">
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--white);margin-bottom:.3rem">Get a Free Quote</div>
+          <div style="font-size:.82rem;color:var(--muted)">Fill the form — we reply within 1 hour</div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="e.g. Rahul Sharma" id="f-name"/></div>
+          <div class="form-group"><label>WhatsApp Number</label><input type="tel" placeholder="+91 98765 43210" id="f-phone"/></div>
+        </div>
+        <div class="form-group"><label>Business Name</label><input type="text" placeholder="e.g. Sharma's Dhaba" id="f-biz"/></div>
+        <div class="form-group"><label>Business Type</label>
+          <select id="f-type">
+            <option value="">Select your business type...</option>
+            <option>🍽️ Restaurant / Cafe</option>
+            <option>🏨 Hotel / Stay</option>
+            <option>💇 Salon / Spa</option>
+            <option>🛍️ Shop / Retail Store</option>
+            <option>🏥 Medical / Clinic</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Package Interested In</label>
+          <select id="f-pkg">
+            <option value="">Choose a package...</option>
+            <option>Starter — ₹2,999</option>
+            <option>Growth — ₹5,999 (Most Popular)</option>
+            <option>Elite — ₹9,999</option>
+            <option>Not sure — need guidance</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message / Question</label><textarea rows="3" placeholder="Write your question or requirement here..." id="f-msg"></textarea></div>
+        <button class="form-submit" onclick="submitForm()">📲 Submit &amp; Connect on WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="container" style="position:relative;z-index:1">
+    <div class="reveal">
+      <div class="sec-tag" style="display:inline-block">Don't Wait — Act Now</div>
+      <h2>Your <em>Competitors</em> Are Already<br/>on Google — Are You?</h2>
+      <p>Every day you delay means lost customers. Order now and go live within 48 hours.</p>
+      <div class="hero-btns" style="justify-content:center">
+        <a href="https://wa.me/917889620931?text=Hello!%20I%20want%20to%20grow%20my%20business%20with%20LuckyBoost." target="_blank" class="btn-gold">📲 Order via WhatsApp Now</a>
+        <a href="tel:+917889620931" class="btn-out">📞 Call: +91 78896 20931</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Lucky<span>Boost</span></div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/917889620931" target="_blank">WhatsApp</a>
+    </div>
+    <div style="display:flex;gap:.6rem">
+      <a href="https://wa.me/917889620931" target="_blank" class="social-btn">💬</a>
+      <a href="https://instagram.com" target="_blank" class="social-btn">📸</a>
+      <a href="https://facebook.com" target="_blank" class="social-btn">📘</a>
+    </div>
+    <div class="footer-copy">© 2025 LuckyBoost · +91 78896 20931 · All Rights Reserved</div>
+  </div>
+</footer>
+
+<div class="wa-float">
+  <div class="wa-tip" id="waTip">💬 Chat with us — Free!</div>
+  <a href="https://wa.me/917889620931?text=Hello!%20I%20want%20to%20grow%20my%20business%20with%20LuckyBoost." target="_blank" class="wa-btn">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<script>
+function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open')}
+document.addEventListener('click',e=>{if(!e.target.closest('nav')&&!e.target.closest('#mobMenu'))document.getElementById('mobMenu').classList.remove('open')});
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+document.querySelectorAll('.svc-grid,.testi-grid,.price-grid,.steps,.who-strip').forEach(g=>{
+  g.querySelectorAll('.svc,.testi,.p-card,.step,.who-pill').forEach((el,i)=>el.style.transitionDelay=`${i*0.1}s`);
+});
+
+function animateCounter(el){
+  const target=parseInt(el.dataset.target);
+  const isDecimal=el.dataset.decimal==='true';
+  const suffix=el.dataset.suffix||'+';
+  let current=0;const step=target/(2000/16);
+  const t=setInterval(()=>{
+    current+=step;if(current>=target){current=target;clearInterval(t)}
+    el.textContent=isDecimal?(current/10).toFixed(1)+'★':target>=1000?Math.floor(current).toLocaleString('en-IN')+suffix:Math.floor(current)+suffix;
+  },16);
+}
+const cObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animateCounter(e.target);cObs.unobserve(e.target)}});},{threshold:0.5});
+document.querySelectorAll('[data-target]').forEach(el=>cObs.observe(el));
+
+function toggleFaq(el){
+  const item=el.parentElement;const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+function submitForm(){
+  const n=document.getElementById('f-name').value||'Customer';
+  const p=document.getElementById('f-phone').value||'';
+  const b=document.getElementById('f-biz').value||'';
+  const t=document.getElementById('f-type').value||'';
+  const k=document.getElementById('f-pkg').value||'';
+  const m=document.getElementById('f-msg').value||'';
+  const txt=`Hello LuckyBoost!%0A%0AName: ${encodeURIComponent(n)}%0APhone: ${encodeURIComponent(p)}%0ABusiness: ${encodeURIComponent(b)}%0AType: ${encodeURIComponent(t)}%0APackage: ${encodeURIComponent(k)}%0AMessage: ${encodeURIComponent(m)}%0A%0AI want to grow my business!`;
+  window.open(`https://wa.me/917889620931?text=${txt}`,'_blank');
+}
+
+setTimeout(()=>{const tip=document.getElementById('waTip');if(tip){tip.style.transition='opacity .5s';tip.style.opacity='0';setTimeout(()=>tip.remove(),500)}},4500);
+</script>
+</body>
+</html>
